@@ -9,9 +9,11 @@ $(function() {
       // ...
 
 /*----- app's state (variables) -----*/
-var deck = [];
-var p1cards = [];
-var p2cards = [];
+var deck = []; // created deck
+var p1Cards = []; // deck 1
+var p2Cards = []; // deck 2
+var p1Played = []; // player 1 card in play
+var p2Played = []; // player 2 card in play
 var winner;
 
 
@@ -52,18 +54,17 @@ function buildDeck() {
   })
 }
 
+
 function shuffle() {
   console.log('shuffling...');
   while (deck.length) {
-    p1cards.push(deck.splice(Math.floor(Math.random() * deck.length), 1)[0]);
+    p1Cards.push(deck.splice(Math.floor(Math.random() * deck.length), 1)[0]);
   }
-  console.log(p1cards);
 
-  
-
+  // SPLIT THE DECK
+  p2Cards = p1Cards.splice(0, 26);
   render();
 }
-
 
 
 // function checkForWinner() {
@@ -71,7 +72,8 @@ function shuffle() {
 
 function render() {
   console.log('rendering...')
-  $('#playerOne').addClass('card').addClass(p1cards[0].css);
+  $('#deckOne').addClass('card').addClass(p1Cards[0].css);
+  $('#deckTwo').addClass('card').addClass(p2Cards[0].css);
 
 }
 
