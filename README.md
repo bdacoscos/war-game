@@ -32,3 +32,11 @@ When player loses all cards
 	- Reset button appears (Play again?)
 
 
+******************
+
+// on click, play cards, determine winner or war, update vars, declare winner or war
+  // if winner: on next click, add all played cards to winner deck, deal cards
+  // if war: draw 4 cards, determine winner or war, update vars, declare winner or war
+    // if winner: on next click, add all played cards to winner deck, deal cards
+    // if war: draw 4 cards, determine winner or war, update vars, declare winner or war
+      // ...
