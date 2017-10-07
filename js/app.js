@@ -3,10 +3,10 @@ $(function() {
 
 /*----- app's state (variables) -----*/
 var deck = []; // created deck
-var p1Cards = []; // deck 1
-var p2Cards = []; // deck 2
-var p1Played = []; // player 1 card in play
-var p2Played = []; // player 2 card in play
+var deckOne = []; // deck 1
+var deckTwo = []; // deck 2
+var playOne = []; // player 1 card in play
+var playTwo = []; // player 2 card in play
 var getWinner;
 
 /*----- cached element references -----*/
@@ -51,35 +51,25 @@ function buildDeck() {
 function shuffle() {
   console.log('shuffling...');
   while (deck.length) {
-    p1Cards.push(deck.splice(Math.floor(Math.random() * deck.length), 1)[0]);
+    deckOne.push(deck.splice(Math.floor(Math.random() * deck.length), 1)[0]);
   }
-  p2Cards = p1Cards.splice(0, 26);
+  deckTwo = deckOne.splice(0, 26);
   console.log('decks are split!');
 }
 
 function deal() {
 
-  if ($('#playOne').hasClass('card')) { $('#playOne').removeClass(p1Played[0].css); }
-  p1Played[0] = p1Cards.shift();
-  $('#playOne').addClass('card').addClass(p1Played[0].css);
+  if ($('#playOne').hasClass('card')) { $('#playOne').removeClass(playOne.css); }
+  playOne = deckOne.shift();
+  $('#playOne').addClass('card').addClass(playOne.css);
+  console.log(playOne);
 
-
-  // p1Played.unshift(p1Cards.shift());
-
-
-  console.log(p1Played);
-  // p2Played.unshift(p2Cards.shift());
-
-  
-
-  
-  // $('#playTwo').addClass('card').addClass(p2Played[0].css);
-  
-  
-  
+  if ($('#playTwo').hasClass('card')) { $('#playTwo').removeClass(playTwo.css); }
+  playTwo = deckTwo.shift();
+  $('#playTwo').addClass('card').addClass(playTwo.css);
+  console.log(playTwo);
   
   render();
- 
 }
 
 
