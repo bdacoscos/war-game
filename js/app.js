@@ -12,6 +12,8 @@ var stageTwo = []; // player 2's staged cards
 
 /*----- cached element references -----*/
 var $msg = $('#msg');
+var $p1Counter = $('#p1Counter');
+var $p2Counter = $('#p2Counter');
 
 /*----- event listeners -----*/
 
@@ -29,7 +31,6 @@ $('button#deal-btn').on('click', deal);
 
 function init() {
   console.log('init is running');
-  
   buildDeck();
   shuffle();
 }
@@ -80,21 +81,41 @@ function getWinner() {
   
   if (playOne.value > playTwo.value) {
     $msg.html(`Player 1 Wins!`);
+    deckOne.push(playOne);
+    deckOne.push(playTwo);
+    console.log(deckOne);
+    console.log(`pushed cards into deckOne`);
   } else if (playTwo.value > playOne.value) {
     $msg.html(`Player 2 Wins!`);
-  } else if (playOne.value === playTwo.value && playTwo.value === playOne.value) {
-    $msg.html(`It's WAR!`);
+    deckTwo.push(playOne);
+    deckTwo.push(playTwo);
+    console.log(deckTwo);
+    console.log(`pushed cards into deckTwo`);
+  } else if (playOne.value === playTwo.value) {
+    $msg.html(`...It's WAR!!`);
+    // war();
   }
 
-  stageOne.push(playOne);
-  console.log(stageOne);
-  
-  
   render();
 }
 
+// function war() {
+//   console.log(`war function listening`);
+//   // push card in playOne and playTwo into stageOne and stageTwo
+//   stageOne.push(playOne);
+//   stageTwo.push(playTwo);
+//   // draw three cards 
+//   stageOne = deckOne.splice(0, 3);
+//   console.log(stageOne);
+//   stageTwo = deckTwo.splice(0, 3);
+//   console.log(stageTwo);
+// }
+
 function render() {
   console.log('rendering...');
+  $p1Counter.html(`Player 1 cards: ${deckOne.length}`);
+  $p2Counter.html(`Player 2 cards: ${deckTwo.length}`);
+
 }  
 
 
