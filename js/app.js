@@ -2,41 +2,36 @@ $(function() {
 /*----- constants -----*/
 
 /*----- app's state (variables) -----*/
-var deck = []; // created deck
+var newDeck = []; // created deck
 var deckOne = []; // deck 1
 var deckTwo = []; // deck 2
 var playOne = []; // player 1 card in play
 var playTwo = []; // player 2 card in play
-var stageOne = []; // player 1's staged cards
-var stageTwo = []; // player 2's staged cards
+
 
 /*----- cached element references -----*/
 var $msg = $('#msg');
 var $p1Counter = $('#p1Counter');
 var $p2Counter = $('#p2Counter');
 
-/*----- event listeners -----*/
 
+/*----- event listeners -----*/
 // event listener on NEW GAME button
 // $('button#reset').on('click', init);
 
 // event listener on DEAL button
 $('button#init').on('click', init);
 $('button#deal-btn').on('click', deal);
-
-// event listener on WAR button
+$('button#war-btn').on('click', war);
 
 
 /*----- functions -----*/
-
 function init() {
-  console.log('init is running');
   buildDeck();
   shuffle();
 }
 
 function buildDeck() {
-  console.log('buildDeck is running');
   var suits = ['d', 'c', 'h', 's'];
   var faces = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
   var lookup = {'02': 2, '03': 3, '04': 4, '05': 5, '06': 6, '07': 7, '08': 8, '09': 9, '10': 10, 'J': 11, 'Q': 12, 'K': 13, 'A': 14};
@@ -46,18 +41,18 @@ function buildDeck() {
         css: suit + face,
         value: lookup[face] 
       };
-      deck.push(card);
+      newDeck.push(card);
     })
   })
 }
 
 function shuffle() {
-  console.log('shuffling...');
-  while (deck.length) {
-    deckOne.push(deck.splice(Math.floor(Math.random() * deck.length), 1)[0]);
+  while (newDeck.length) {
+    deckOne.push(newDeck.splice(Math.floor(Math.random() * newDeck.length), 1)[0]);
   }
   deckTwo = deckOne.splice(0, 26);
   console.log('decks are split!');
+  render();
 }
 
 function deal() {
@@ -71,45 +66,44 @@ function deal() {
   if ($('#playTwo').hasClass('card')) { $('#playTwo').removeClass(playTwo.css); }
   playTwo = deckTwo.shift();
   $('#playTwo').addClass('card').addClass(playTwo.css);
-  
+
   getWinner();
 }
 
 function getWinner() {
-  console.log(playOne);
-  console.log(playTwo);
-  
   if (playOne.value > playTwo.value) {
-    $msg.html(`Player 1 Wins!`);
     deckOne.push(playOne);
     deckOne.push(playTwo);
-    console.log(deckOne);
     console.log(`pushed cards into deckOne`);
+    $msg.html(`Player 1 Wins!`);
   } else if (playTwo.value > playOne.value) {
-    $msg.html(`Player 2 Wins!`);
     deckTwo.push(playOne);
     deckTwo.push(playTwo);
-    console.log(deckTwo);
     console.log(`pushed cards into deckTwo`);
+    $msg.html(`Player 2 Wins!`);
   } else if (playOne.value === playTwo.value) {
     $msg.html(`...It's WAR!!`);
-    // war();
+    war();
   }
 
   render();
 }
 
-// function war() {
-//   console.log(`war function listening`);
-//   // push card in playOne and playTwo into stageOne and stageTwo
-//   stageOne.push(playOne);
-//   stageTwo.push(playTwo);
-//   // draw three cards 
-//   stageOne = deckOne.splice(0, 3);
-//   console.log(stageOne);
-//   stageTwo = deckTwo.splice(0, 3);
-//   console.log(stageTwo);
-// }
+function war() {
+  console.log(`war function listening`);
+  
+  // while war condition true (playOne[0].value === playTwo[0].value):
+    // draw 4 cards, shift into playOne and playTwo
+    // if playOne[0].value > playTwo[0].value --> {push all cards into deckOne}
+    // if playTwo[0].value > playOne[0].value --> {push all cards into deckTwo}
+
+
+  stageOne = deckOne.splice(0, 3);
+  console.log(stageOne);
+
+  stageTwo = deckTwo.splice(0, 3);
+  console.log(stageTwo);
+}
 
 function render() {
   console.log('rendering...');
