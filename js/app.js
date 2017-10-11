@@ -10,7 +10,6 @@ var playTwo = []; // player 2 card in play
 var winner;
 var inWar;
 
-
 /*----- cached element references -----*/
 var $msg = $('#msg');
 var $p1Counter = $('#p1Counter');
@@ -18,23 +17,31 @@ var $p2Counter = $('#p2Counter');
 
 
 /*----- event listeners -----*/
-$('#init').on('click', init);
+$('#play').on('click', init);
 $('#deal-btn').on('click', deal);
+$('#new-game').on('click', init);
 $('#war-btn').on('click', doWar);
 
 
 /*----- functions -----*/
 function init() {
+  deckOne = [];
+  playOne = [];
+  deckTwo = [];
+  playTwo = [];
   winner = null;
   inWar = false;
+  $('#play').hide();
   $('#deal-btn').show();
+  $('#new-game').show();
+  $msg.hide();
   buildDeck();
   shuffle();
   render();
 }
 
 function buildDeck() {
-  var suits = ['d', 'c'/*, 'h', 's'*/];
+  var suits = ['d', 'c', 'h', 's'];
   var faces = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
   var lookup = {'02': 2, '03': 3, '04': 4, '05': 5, '06': 6, '07': 7, '08': 8, '09': 9, '10': 10, 'J': 11, 'Q': 12, 'K': 13, 'A': 14};
   suits.forEach(function(suit) {
@@ -46,20 +53,19 @@ function buildDeck() {
       newDeck.push(card);
     })
   })
-  console.log(newDeck);
 }
 
 function shuffle() {
   while (newDeck.length) {
     deckOne.push(newDeck.splice(Math.floor(Math.random() * newDeck.length), 1)[0]);
   }
-  deckTwo = deckOne.splice(0, 13);
+  deckTwo = deckOne.splice(0, 26);
 }
 
 function deal() {
+  $msg.show();
   playOne = [];
   playTwo = [];
-
   playOne.unshift(deckOne.shift());
   playTwo.unshift(deckTwo.shift());
   getWinner();
@@ -87,8 +93,8 @@ function doWar() {
   // if either deck less than 4, doWar for x-amount of cards
   var numToDeal = Math.min(deckOne.length, deckTwo.length,  4);
   for (var i = 0; i < numToDeal; i++) {
-      playOne.unshift(deckOne.shift());
       playTwo.unshift(deckTwo.shift());
+      playOne.unshift(deckOne.shift());
   } 
   getWinner();
 } 
@@ -113,5 +119,5 @@ function declareWinner() {
   $('#deal-btn').hide();
 }
 
-init();
+// init();
 });
