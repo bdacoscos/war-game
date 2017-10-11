@@ -30,7 +30,7 @@ function init() {
   $('#deal-btn').show();
   buildDeck();
   shuffle();
-  // render();
+  render();
 }
 
 function buildDeck() {
@@ -113,4 +113,5 @@ function declareWinner() {
   $('#deal-btn').hide();
 }
 
+init();
 });

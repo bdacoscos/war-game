@@ -1,42 +1,38 @@
-WAR!
+## WAR!
 
-When page loads, “main” game screen is displayed.
-	- Displays:
-		- Title of game
-		- Game play description
-		- 2 decks of cards
-		- DEAL button
+### The Pseudocode
 
-Player clicks DEAL button
-	- Card counters display (start at 26 each)
+#### When page loads, “main” game screen is displayed.
+  
+  - Displays:
+  - Title of game
+  - Game play description
+  - 2 decks of cards
+  - DEAL button
+
+#### Player clicks DEAL button
+	
+  - Card counters display (start at 26 each)
 	- Two cards are “drawn”
-		- Higher card between the two wins
+    - Higher card between the two wins
 	- Message to display winner (or war!) appears below
 	- Total number of cards drawn (2 in this case) are added to winner’s card counter
 
-If a tie occurs, it’s WAR!
-	- DEAL button starts to pulse
+#### If a tie occurs, it’s WAR!
+
+  - DEAL button starts to pulse
 	- DEAL button is clicked
 		- 3 cards are drawn and displayed face-down
 		- 4th card is drawn and displayed facing up
 		- Higher card wins
 			- Total number of cards drawn are added to winner’s counter
 
-Double-War, Triple War… can occur
-	- Cards can be drawn as long as a player has enough cards
-		- If player does not have enough cards to play WAR, can use last card available
+#### Double-War, Triple War… can occur!
+  
+  - Cards can be drawn as long as a player has enough cards
+		- If player does not have enough cards to play War, both players play as many cards as the player with the least amount of cards has.
 
-When player loses all cards
-	- Opponent wins
+#### When player loses all cards
+  - Opponent wins
 	- Winner display message appears
 	- Reset button appears (Play again?)
-
-
-******************
-
-// on click, play cards, determine winner or war, update vars, declare winner or war
-  // if winner: on next click, add all played cards to winner deck, deal cards
-  // if war: draw 4 cards, determine winner or war, update vars, declare winner or war
-    // if winner: on next click, add all played cards to winner deck, deal cards
-    // if war: draw 4 cards, determine winner or war, update vars, declare winner or war
-      // ...
