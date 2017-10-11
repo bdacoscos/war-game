@@ -27,9 +27,10 @@ $('#war-btn').on('click', doWar);
 function init() {
   winner = null;
   inWar = false;
+  $('#deal-btn').show();
   buildDeck();
   shuffle();
-  render();
+  // render();
 }
 
 function buildDeck() {
@@ -52,7 +53,7 @@ function shuffle() {
   while (newDeck.length) {
     deckOne.push(newDeck.splice(Math.floor(Math.random() * newDeck.length), 1)[0]);
   }
-  deckTwo = deckOne.splice(0, 26);
+  deckTwo = deckOne.splice(0, deckOne.length / 2);
 }
 
 function deal() {
@@ -64,14 +65,17 @@ function deal() {
   getWinner();
 }
 
-function getWinner() {
-  // while there are cards in deckOne and deckTwo, continue drawing cards
+function checkForWinner() {
+  if (deckOne.length === 0 || deckTwo.length === 0) { declareWinner(); };
+}
 
+function getWinner() {
   if (playOne[0].value !== playTwo[0].value) {
     // there is a winner, no war
     inWar = false;
     var winnerDeck = playOne[0].value > playTwo[0].value ? deckOne : deckTwo;
     winnerDeck.push(...playOne, ...playTwo);
+    winner = winnerDeck === deckOne ? `Player 1` : `Player 2`;
   } else {
     // it's war!
     inWar = true;
@@ -80,6 +84,7 @@ function getWinner() {
 }
     
 function doWar() {
+  if (deckOne.length < 4 || deckTwo.length < 4) { declareWinner(); };
   // draw 4 cards
   for (var i = 0; i < 4; i++) {
     playOne.unshift(deckOne.shift());
@@ -99,7 +104,12 @@ function render() {
   inWar ? $('#war-btn').show() : $('#deal-btn').show();
   $p1Counter.html(`Player 1 cards: ${deckOne.length}`);
   $p2Counter.html(`Player 2 cards: ${deckTwo.length}`);
-  $msg.html(inWar ? "It's War!" : "Battle!");
+  $msg.html(inWar ? `It's War!` : `${winner} wins!`);
+  checkForWinner();
 }  
+
+function declareWinner() {
+  console.log(`winner, winner!`);
+}
 
 });
