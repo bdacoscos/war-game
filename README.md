@@ -5,10 +5,10 @@
 #### When page loads, “main” game screen is displayed.
   
   - Displays:
-  - Title of game
-  - Game play description
-  - 2 decks of cards
-  - DEAL button
+    - Title of game
+    - Game play description
+    - 2 decks of cards
+    - DEAL button
 
 #### Player clicks DEAL button
 	
