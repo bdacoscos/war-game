@@ -7,6 +7,8 @@ var deckOne = []; // deck 1
 var deckTwo = []; // deck 2
 var playOne = []; // player 1 card in play
 var playTwo = []; // player 2 card in play
+var winner;
+var inWar;
 
 
 /*----- cached element references -----*/
@@ -16,19 +18,18 @@ var $p2Counter = $('#p2Counter');
 
 
 /*----- event listeners -----*/
-// event listener on NEW GAME button
-// $('button#reset').on('click', init);
-
-// event listener on DEAL button
-$('button#init').on('click', init);
-$('button#deal-btn').on('click', deal);
-$('button#war-btn').on('click', war);
+$('#init').on('click', init);
+$('#deal-btn').on('click', deal);
+$('#war-btn').on('click', doWar);
 
 
 /*----- functions -----*/
 function init() {
+  winner = null;
+  inWar = false;
   buildDeck();
   shuffle();
+  render();
 }
 
 function buildDeck() {
@@ -44,6 +45,7 @@ function buildDeck() {
       newDeck.push(card);
     })
   })
+  console.log(newDeck);
 }
 
 function shuffle() {
@@ -51,68 +53,53 @@ function shuffle() {
     deckOne.push(newDeck.splice(Math.floor(Math.random() * newDeck.length), 1)[0]);
   }
   deckTwo = deckOne.splice(0, 26);
-  console.log('decks are split!');
-  render();
 }
 
 function deal() {
-  $('#playOne').removeClass('back');
-  $('#playTwo').removeClass('back');
+  playOne = [];
+  playTwo = [];
 
-  if ($('#playOne').hasClass('card')) { $('#playOne').removeClass(playOne.css); }
-  playOne = deckOne.shift();
-  $('#playOne').addClass('card').addClass(playOne.css);
-
-  if ($('#playTwo').hasClass('card')) { $('#playTwo').removeClass(playTwo.css); }
-  playTwo = deckTwo.shift();
-  $('#playTwo').addClass('card').addClass(playTwo.css);
-
+  playOne.unshift(deckOne.shift());
+  playTwo.unshift(deckTwo.shift());
   getWinner();
 }
 
 function getWinner() {
-  if (playOne.value > playTwo.value) {
-    deckOne.push(playOne);
-    deckOne.push(playTwo);
-    console.log(`pushed cards into deckOne`);
-    $msg.html(`Player 1 Wins!`);
-  } else if (playTwo.value > playOne.value) {
-    deckTwo.push(playOne);
-    deckTwo.push(playTwo);
-    console.log(`pushed cards into deckTwo`);
-    $msg.html(`Player 2 Wins!`);
-  } else if (playOne.value === playTwo.value) {
-    $msg.html(`...It's WAR!!`);
-    war();
-  }
+  // while there are cards in deckOne and deckTwo, continue drawing cards
 
+  if (playOne[0].value !== playTwo[0].value) {
+    // there is a winner, no war
+    inWar = false;
+    var winnerDeck = playOne[0].value > playTwo[0].value ? deckOne : deckTwo;
+    winnerDeck.push(...playOne, ...playTwo);
+  } else {
+    // it's war!
+    inWar = true;
+  }
   render();
 }
-
-function war() {
-  console.log(`war function listening`);
-  
-  // while war condition true (playOne[0].value === playTwo[0].value):
-    // draw 4 cards, shift into playOne and playTwo
-    // if playOne[0].value > playTwo[0].value --> {push all cards into deckOne}
-    // if playTwo[0].value > playOne[0].value --> {push all cards into deckTwo}
-
-
-  stageOne = deckOne.splice(0, 3);
-  console.log(stageOne);
-
-  stageTwo = deckTwo.splice(0, 3);
-  console.log(stageTwo);
+    
+function doWar() {
+  // draw 4 cards
+  for (var i = 0; i < 4; i++) {
+    playOne.unshift(deckOne.shift());
+    playTwo.unshift(deckTwo.shift());
+  }
+  getWinner();
 }
-
+    
 function render() {
-  console.log('rendering...');
+  if (playOne[0]) {
+    $('#playOne').removeClass();
+    $('#playOne').addClass(`xlarge card ${playOne[0].css}`);
+    $('#playTwo').removeClass();
+    $('#playTwo').addClass(`xlarge card ${playTwo[0].css}`);
+  }
+  inWar ? $('#deal-btn').hide() : $('#war-btn').hide();
+  inWar ? $('#war-btn').show() : $('#deal-btn').show();
   $p1Counter.html(`Player 1 cards: ${deckOne.length}`);
   $p2Counter.html(`Player 2 cards: ${deckTwo.length}`);
-
+  $msg.html(inWar ? "It's War!" : "Battle!");
 }  
 
-
-
-// init();
 });
