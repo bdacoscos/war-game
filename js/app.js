@@ -34,7 +34,7 @@ function init() {
 }
 
 function buildDeck() {
-  var suits = ['d', 'c', 'h', 's'];
+  var suits = ['d', 'c'/*, 'h', 's'*/];
   var faces = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
   var lookup = {'02': 2, '03': 3, '04': 4, '05': 5, '06': 6, '07': 7, '08': 8, '09': 9, '10': 10, 'J': 11, 'Q': 12, 'K': 13, 'A': 14};
   suits.forEach(function(suit) {
@@ -53,7 +53,7 @@ function shuffle() {
   while (newDeck.length) {
     deckOne.push(newDeck.splice(Math.floor(Math.random() * newDeck.length), 1)[0]);
   }
-  deckTwo = deckOne.splice(0, deckOne.length / 2);
+  deckTwo = deckOne.splice(0, 13);
 }
 
 function deal() {
@@ -84,14 +84,14 @@ function getWinner() {
 }
     
 function doWar() {
-  if (deckOne.length < 4 || deckTwo.length < 4) { declareWinner(); };
-  // draw 4 cards
-  for (var i = 0; i < 4; i++) {
-    playOne.unshift(deckOne.shift());
-    playTwo.unshift(deckTwo.shift());
-  }
+  // if either deck less than 4, doWar for x-amount of cards
+  var numToDeal = Math.min(deckOne.length, deckTwo.length,  4);
+  for (var i = 0; i < numToDeal; i++) {
+      playOne.unshift(deckOne.shift());
+      playTwo.unshift(deckTwo.shift());
+  } 
   getWinner();
-}
+} 
     
 function render() {
   if (playOne[0]) {
@@ -109,7 +109,8 @@ function render() {
 }  
 
 function declareWinner() {
-  console.log(`winner, winner!`);
+  $msg.html(`${winner} Wins War!!`);
+  $('#deal-btn').hide();
 }
 
 });
