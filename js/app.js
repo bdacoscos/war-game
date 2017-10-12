@@ -1,14 +1,13 @@
 $(function() {
-/*----- constants -----*/
-
 /*----- app's state (variables) -----*/
-var newDeck = []; // created deck
-var deckOne = []; // deck 1
-var deckTwo = []; // deck 2
-var playOne = []; // player 1 card in play
-var playTwo = []; // player 2 card in play
+var newDeck = []; 
+var deckOne = []; 
+var deckTwo = []; 
+var playOne = []; 
+var playTwo = []; 
 var winner;
 var inWar;
+
 
 /*----- cached element references -----*/
 var $msg = $('#msg');
@@ -59,7 +58,7 @@ function shuffle() {
   while (newDeck.length) {
     deckOne.push(newDeck.splice(Math.floor(Math.random() * newDeck.length), 1)[0]);
   }
-  deckTwo = deckOne.splice(0, 26);
+  deckTwo = deckOne.splice(0, 13);
 }
 
 function deal() {
@@ -77,20 +76,17 @@ function checkForWinner() {
 
 function getWinner() {
   if (playOne[0].value !== playTwo[0].value) {
-    // there is a winner, no war
     inWar = false;
     var winnerDeck = playOne[0].value > playTwo[0].value ? deckOne : deckTwo;
     winnerDeck.push(...playOne, ...playTwo);
     winner = winnerDeck === deckOne ? `Player 1` : `Player 2`;
   } else {
-    // it's war!
     inWar = true;
   }
   render();
 }
     
 function doWar() {
-  // if either deck less than 4, doWar for x-amount of cards
   var numToDeal = Math.min(deckOne.length, deckTwo.length,  4);
   for (var i = 0; i < numToDeal; i++) {
       playTwo.unshift(deckTwo.shift());
@@ -119,5 +115,4 @@ function declareWinner() {
   $('#deal-btn').hide();
 }
 
-// init();
 });
