@@ -58,7 +58,7 @@ function shuffle() {
   while (newDeck.length) {
     deckOne.push(newDeck.splice(Math.floor(Math.random() * newDeck.length), 1)[0]);
   }
-  deckTwo = deckOne.splice(0, 13);
+  deckTwo = deckOne.splice(0, 26);
 }
 
 function deal() {
