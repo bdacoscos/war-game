@@ -67,7 +67,7 @@ function deal() {
 }
 
 function checkForWinner() {
-  if (deckOne.length === 0 || deckTwo.length === 0) { declareWinner(); };
+  if (deckOne.length === 0 || deckTwo.length === 0) {declareWinner();};
 }
 
 function getWinner() {
