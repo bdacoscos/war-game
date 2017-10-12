@@ -35,7 +35,6 @@ function init() {
   $('#new-game').show();
   $msg.hide();
   buildDeck();
-  shuffle();
   render();
 }
 
@@ -52,9 +51,6 @@ function buildDeck() {
       newDeck.push(card);
     })
   })
-}
-
-function shuffle() {
   while (newDeck.length) {
     deckOne.push(newDeck.splice(Math.floor(Math.random() * newDeck.length), 1)[0]);
   }
