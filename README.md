@@ -8,6 +8,8 @@
 
 This game was created for General Assembly's WDI course. 
 
+![Gif of Game](https://media.giphy.com/media/l1J9MfDFy2CA2ILv2/giphy.gif)
+
 ![Image of Main Game Screen](https://i.imgur.com/mW5Gp3F.png)
 
 ![Image of Game in Play](https://i.imgur.com/PrZj72W.png)

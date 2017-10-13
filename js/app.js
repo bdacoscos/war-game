@@ -1,11 +1,3 @@
-var interval;
-function automateTest() {
-  interval = setInterval(function() {test()}, 200);
-}
-function stopTest() {
-  clearInterval(interval)
-}
-
 $(function () {
   /*----- app's state (variables) -----*/
   var newDeck = [];
@@ -92,8 +84,6 @@ $(function () {
     getWinner();
   }
 
-  var test = deal;
-
   function checkForWinner() {
     if (deckOne.length === 0 || deckTwo.length === 0) {
       declareWinner();
@@ -150,7 +140,7 @@ $(function () {
   }
 
   function declareWinner() {
-    $msg.html(`WINNER!!!!! ${winner.toUpperCase()} ARE THE BEST PETS!`);
+    $msg.html(`WINNER!!!!! ${winner.toUpperCase()} ARE THE BEST PETS!`).css('color','red');
     $deal.hide();
   }
 
