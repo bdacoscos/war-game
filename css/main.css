@@ -47,6 +47,10 @@ p {
   font-family: 'Roboto', sans-serif;
 }
 
+.hidden {
+  display: none;
+}
+
 /****************************************************************
 Button Styles (Play, Deal, New Game, WAR)
 ****************************************************************/
@@ -106,7 +110,6 @@ button:hover {
   animation: shake;
   animation-duration: 1s;
   animation-iteration-count: 1;
-
 }
 
 /****************************************************************
@@ -132,7 +135,6 @@ button:hover {
   height: 200px;
   display: flex;
   justify-content: center;
-
 }
 
 #msg {
@@ -142,10 +144,6 @@ button:hover {
   height: 10px;
 }
 
-.hidden {
-  display: none;
-}
-
 /****************************************************************
   Footer
 ****************************************************************/
@@ -153,11 +151,9 @@ footer {
   display: flex;
 }
 
-
 /****************************************************************
   Animations
 ****************************************************************/
-
 @keyframes shake {
   10%,
   90% {
