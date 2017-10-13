@@ -1,3 +1,12 @@
+// var test = deal;
+// var interval;
+// function automateTest() {
+//   interval = setInterval(function() {test()}, 200);
+// }
+// function stopTest() {
+//   clearInterval(interval)
+// }
+
 $(function () {
   /*----- app's state (variables) -----*/
   var newDeck = [];
