@@ -12,7 +12,7 @@ This game was created for General Assembly's WDI course.
 
 ![Image of Main Game Screen](https://i.imgur.com/jnxZMg8.png)
 
-![Image of Game in Play](https://i.imgur.com/Db46urp.png)
+![Image of Game in Play](https://i.imgur.com/aNB1NNz.png)
 
 ![Image of War Play](https://i.imgur.com/CTGtmwa.png)
 
