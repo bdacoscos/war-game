@@ -21,8 +21,8 @@ The web development trifecta:
 
 ## Getting Started
 
-Play the game here: [War: Cats vs. Dogs] (https://bdacoscos.github.io/war-game/)
+Play the game here: [War: Cats vs. Dogs](https://bdacoscos.github.io/war-game/)
 
 ## Next Steps
 
-I have a running list of "Icebox" features that can be viewed on my [Trello board for this game: ](https://trello.com/b/cUwwg4dE)
+I have a running list of "Icebox" features that can be viewed on my [Trello board for this game.](https://trello.com/b/cUwwg4dE)
