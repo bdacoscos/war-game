@@ -1,14 +1,3 @@
-var test;
-var interval;
-
-function automateTest() {
-  interval = setInterval(function () { test() }, 100)
-}
-
-function stopTest() {
-  clearInterval(interval)
-}
-
 $(function () {
   /*----- app's state (variables) -----*/
   var newDeck = [];
@@ -23,11 +12,8 @@ $(function () {
 
   /*----- cached element references -----*/
   var $instructions = $('#instructions');
-  
-  // removed cached play button 
   var $teamCats = $('#team-cats');
   var $teamDogs = $('#team-dogs');
-
   var $deal = $('#deal-btn');
   var $newgame = $('#new-game');
   var $warbtn = $('#war-btn');
@@ -90,8 +76,6 @@ $(function () {
     getWinner();
   }
 
-  test = deal;
-
   function checkForWinner() {
     if (deckOne.length === 0 || deckTwo.length === 0) {
       declareWinner();
@@ -123,10 +107,11 @@ $(function () {
     if (playOne[0]) {
       $('#playOne').removeClass();
       $('#playOne').addClass(`xlarge card ${playOne[0].css}`);
+      $('#dog').removeClass('animate wiggle');
+      $('#cat').removeClass('animate wiggle');
       $('#playTwo').removeClass();
       $('#playTwo').addClass(`xlarge card ${playTwo[0].css}`);
     }
-    
     inPlay? $('#war-zone').show() : $('#war-zone').hide();
     inWar ? $deal.hide() : $warbtn.hide();
     if (inWar) {
