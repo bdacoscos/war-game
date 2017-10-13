@@ -126,6 +126,7 @@ $(function () {
       $('#playTwo').removeClass();
       $('#playTwo').addClass(`xlarge card ${playTwo[0].css}`);
     }
+    
     inPlay? $('#war-zone').show() : $('#war-zone').hide();
     inWar ? $deal.hide() : $warbtn.hide();
     if (inWar) {

@@ -2,62 +2,80 @@
   font-family: 'Quicksand', sans-serif;
   margin: 0 auto;
   box-sizing: border-box;
+  height: 100;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  max-width: 900px;
 }
 
 .wrap {
-  max-width: 1000px;
   text-align: center;
+  min-height: 100%;
+  margin-bottom: -30px;
+}
+
+.wrap:after {
+  content: "";
+  display: block;
+}
+
+footer, .wrap:after {
+  height: 30px;
 }
 
 h1 {
   font-size: 80px;
-  margin: 30px auto;
+  margin: 0 0 30px 0;
+  background-color: #008CFF;
+  padding: 40px 0;
+  color: white;
 }
-
-h3 {
-  font-size: 30px;
-}
-
-#msg {
-  font-size: 45px;
-}
-
 
 section {
   display: flex;
   justify-content: center;
 }
 
-h3, p {
+p {
+  margin: 5px 0;
   font-family: 'Roboto', sans-serif;
 }
-/****************************************************************
-  Header styles
-****************************************************************/
 
 /****************************************************************
 Button Styles (Play, Deal, New Game, WAR)
 ****************************************************************/
 button {
   border-radius: 10px;
-  background: #4141EB;
+  background: lightseagreen;
   box-shadow: 0 1px 0 #666, 0 1px 0 #444, 0 6px 6px rgba(0, 0, 0, 0.6);
   border: 0 none;
   color: white;
   font-size: 35px;
   padding: 8px 12px;
   margin: 0px 5px;
+  transition: all .2s ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.1);
 }
 
 .input {
   display: flex;
   align-items: center;
-  margin: 0 0 30px 0;
+  margin: 5px 0 15px;
 }
 
 #dog, #cat {
   width: 200px;
-  margin: 0px 100px;
+  margin: 0px 70px;
 }
 
 .team-buttons {
@@ -66,35 +84,33 @@ button {
 }
 
 #new-game {
+  box-shadow: unset;
   background: none;
   border: 0 none;
   color: #FF7070;
-  text-decoration: underline;
-  vertical-align: bottom;
-  padding: 0;
   font-size: 20px;
-
+  margin: 0 auto;
+  padding: 2px;
 }
 
 #war-btn {
-  background: #FF7070;
+  background: #FF3535;
   border-radius: 100px;
   width: 175px;
   height: 175px;
   color: white;
   font-size: 60px;
-  
 }
 
 /****************************************************************
   'War Zone' Styles (Counters, Main, Msg)
 ****************************************************************/
-section.counters {
+.counters {
   font-weight: 300;
   font-size: 20px;
   display: flex;
   justify-content: space-between;
-  height: 40px;
+  height: 30px;
   max-width: 675px;
 }
 
@@ -106,20 +122,17 @@ section.counters {
   padding: 0.5em;
   margin: 0 auto;
   max-width: 800px;
-  height: 250px;
+  height: 200px;
   display: flex;
   justify-content: center;
 
 }
 
-section.msg-center {
-  flex-direction: column;
-}
-
 #msg {
   padding: 30px;
   font-weight: 700;
-  font-size: 60px;
+  font-size: 45px;
+  height: 10px;
 }
 
 .hidden {
@@ -131,9 +144,4 @@ section.msg-center {
 ****************************************************************/
 footer {
   display: flex;
-}
-
-
-#new-game {
-  margin: 0 auto;
 }
