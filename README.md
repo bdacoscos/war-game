@@ -8,12 +8,11 @@
 
 This game was created for General Assembly's WDI course. 
 
-[Image of Main Game Screen](https://imgur.com/mW5Gp3F)
+![Image of Main Game Screen](https://i.imgur.com/mW5Gp3F.png)
 
-[Image of Game in Play](https://imgur.com/PrZj72W)
+![Image of Game in Play](https://i.imgur.com/PrZj72W.png)
 
-[Image of War Play](https://imgur.com/AOIhsdz)
-
+![Image of War Play](https://i.imgur.com/AOIhsdz.png)
 
 ## Technologies Used
 
