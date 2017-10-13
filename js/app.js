@@ -1,4 +1,3 @@
-var test = deal;
 var interval;
 function automateTest() {
   interval = setInterval(function() {test()}, 200);
@@ -92,6 +91,8 @@ $(function () {
     playTwo.unshift(deckTwo.shift());
     getWinner();
   }
+
+  var test = deal;
 
   function checkForWinner() {
     if (deckOne.length === 0 || deckTwo.length === 0) {
