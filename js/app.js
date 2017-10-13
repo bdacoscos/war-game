@@ -61,10 +61,18 @@ $(function () {
         newDeck.push(card);
       })
     })
-    while (newDeck.length) {
-      deckOne.push(newDeck.splice(Math.floor(Math.random() * newDeck.length), 1)[0]);
+    deckOne = newDeck.splice(0, 26);
+    deckTwo = newDeck.splice(0, 26);
+    shuffle();
+  }
+
+  function shuffle() {
+    for (var i = 0; i < deckOne.length; i++) {
+      deckOne.push(deckOne.splice(Math.floor(Math.random() * deckOne.length), 1)[0]);
     }
-    deckTwo = deckOne.splice(0, 26);
+    for (var j = 0; j < deckTwo.length; j++) {
+      deckTwo.push(deckTwo.splice(Math.floor(Math.random() * deckTwo.length), 1)[0]);
+    }
   }
 
   function deal() {
@@ -90,6 +98,7 @@ $(function () {
       winner = winnerDeck === deckOne ? `Cats` : `Dogs`;
     } else {
       inWar = true;
+      shuffle();
     }
     render();
   }
@@ -119,18 +128,19 @@ $(function () {
       $warbtn.attr("disabled", "");
       setTimeout(function(){
         $warbtn.removeAttr("disabled", "");
-      }, 2000);
+      }, 750);
     } else {
       $deal.show();
     }
     $p1Counter.html(`Team Cats: ${deckOne.length}`);
     $p2Counter.html(`Team Dogs: ${deckTwo.length}`);
     $msg.html(inWar ? `It's War!!!` : `${winner} win!`);
+    shuffle();
     checkForWinner();
   }
 
   function declareWinner() {
-    $msg.html(`WINNER!!!!! ${winner.toUpperCase()} ARE THE BEST PETS IN THE WORLD!`);
+    $msg.html(`WINNER!!!!! ${winner.toUpperCase()} ARE THE BEST PETS!`);
     $deal.hide();
   }
 
